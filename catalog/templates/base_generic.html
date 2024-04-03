@@ -14,21 +14,21 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
-  <body>
+  <body style="border:3px solid dodgerblue;background-color:antiquewhite;">
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-2">
           {% block sidebar %}
-            <ul class="sidebar-nav">
+            <ul class="sidebar-nav" style="font-size: 20px;">
               {% if user.is_authenticated %}
-                <li>User: {{ user.get_username }}</li>
+                <li><strong>User</strong>: {{ user.get_username }}</li>
 
                 <li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
 
                 {% if user.is_staff %}
                 <hr>
                 <ul class="sidebar-nav">
-                <li>Staff</li>
+                <li><strong>Staff</strong></li>
                    <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
                 {% if perms.catalog.add_author %}
                    <li><a href="{% url 'author-create' %}">Create author</a></li>
@@ -39,7 +39,7 @@
                 <li>
                   <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-link">Logout</button>
+                    <button type="submit" class="btn btn-link" style="font-size: 20px;">Logout</button>
                   </form>
                 </li>
               {% else %}
