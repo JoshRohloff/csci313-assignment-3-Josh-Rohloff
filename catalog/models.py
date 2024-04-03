@@ -26,14 +26,14 @@ class Genre(models.Model):
         """Returns the url to access a particular genre instance."""
         return reverse('genre-detail', args=[str(self.id)])
 
-    class Meta:
-        constraints = [
-            UniqueConstraint(
-                Lower('name'),
-                name='genre_name_case_insensitive_unique',
-                violation_error_message = "Genre already exists (case insensitive match)"
-            ),
-        ]
+    # class Meta:
+    #     constraints = [
+    #         UniqueConstraint(
+    #             Lower('name'),
+    #             name='genre_name_case_insensitive_unique',
+    #             violation_error_message = "Genre already exists (case insensitive match)"
+    #         ),
+    #     ]
 
 class Language(models.Model):
     """Model representing a Language (e.g. English, French, Japanese, etc.)"""
@@ -113,6 +113,10 @@ class BookInstance(models.Model):
         ordering = ['due_back']
         permissions = (("can_mark_returned", "Set book as returned"),)
 
+    def get_absolute_url(self):
+        """Returns the url to access a particular book instance."""
+        return reverse('bookinstance-detail', args=[str(self.id)])
+    
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.id} ({self.book.title})'
