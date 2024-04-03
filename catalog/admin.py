@@ -35,7 +35,6 @@ class BookAdmin(admin.ModelAdmin):
 
     inlines = [BooksInstanceInline]
 
-admin.site.register(Book, BookAdmin)
 
 # Register the Admin classes for BookInstance using the decorator
 @admin.register(BookInstance)
